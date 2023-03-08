@@ -10,11 +10,11 @@ close all;
 lp = [100 200];
 gain_lp = [5 4];
 
-hp = [3000];
+hp = [40];
 gain_hp = [5];
 
-lp_hp = [];
-gain_lp_hp = [];
+lp_hp = [4000];
+gain_lp_hp = [6];
 
 rlc = [100];
 gain_rlc = 7;

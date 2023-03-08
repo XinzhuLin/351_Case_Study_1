@@ -41,13 +41,6 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         end
     end
 
-    if (~isempty(lp_hp))
-        for index = 1:length(lp_hp)
-            final_impulse_response_individual(index+length(lp)+length(hp),:) = gain_lp_hp(1,index).*((lp_hp(1,index))./((1i.*range_of_omega) + lp_hp(1,index))).*(1i.*range_of_omega)./((1i.*range_of_omega) + lp_hp(1,index));
-            final_impulse_response = final_impulse_response + final_impulse_response_individual(index+length(lp)+length(hp),:);
-        end
-    end
-
      if (~isempty(rlc))
         for index = 1:length(rlc)
             r = rlc_elements(1,1);
