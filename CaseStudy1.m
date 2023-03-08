@@ -7,11 +7,11 @@
 clear;
 close all;
 
-lp = [100];
-gain_lp = [5];
+lp = [100 200];
+gain_lp = [5 4];
 
-hp = [];
-gain_hp = [];
+hp = [3000];
+gain_hp = [5];
 
 lp_hp = [];
 gain_lp_hp = [];
