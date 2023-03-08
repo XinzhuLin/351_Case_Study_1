@@ -103,12 +103,11 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         figure;
         hold on;
         loglog(range_of_omega,abs(final_impulse_response));
-        
-        for index = 1:sum_of_impulse_responses
-            loglog(range_of_omega,abs(final_impulse_response_individual(index,:)));
+        for index = 1:sum_
+            loglog(range_of_omega,abs(final_impulse_response_individual));
             if (index <= length(lp))
                 name = "HLP" + index;
-                legend_labels = [legend_labels name];       
+                legend_labels = [legend_labels name];
             end
             if (index > length(lp) && index <= length(hp))
                 name = "HHP" + index;
