@@ -14,7 +14,7 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
     disp("Successful: FFT Calculated");
     disp("Successful: FFT Length " + length(fft_of_sound));
 
-    % Part 3: Calculating the impulse responses with RC Filters
+    % Part 3: Calculating the impulse responses with RC and RLC Filters
     range_of_omega = 1:length(fft_of_sound);
     final_impulse_response = zeros(1,length(fft_of_sound));
     sum_of_impulse_responses = length(lp)+length(hp)+length(lp_hp)+length(rlc);
