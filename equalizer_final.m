@@ -62,9 +62,9 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
 
     % Part 6: Optional Plotting 
     if plotting == true
-        % Plotting the FFT of the Sound
+        % Bode Plot of the Original Sound
         figure;
-        subplot(1,2,1);
+        subplot(2,2,1);
         L = length(fft_of_sound);
         P2 = abs(fft_of_sound/L);
         P1 = P2(1:L/2+1);
@@ -75,8 +75,19 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         xlabel("f (Hz)")
         ylabel("Magnitude of Fast Fourier Transform")
 
-        % Plotting the FFT of the Sound after Impulse Respones
-        subplot(1,2,2);
+        subplot(2,2,3);
+        L = length(fft_of_sound);
+        P2 = angle(fft_of_sound/L);
+        P1 = P2(1:L/2+1);
+        P1(2:(length(P1)-1)) = 2*P1(2:(length(P1)-1));
+        f = Fs_music*(0:(L/2))/L;
+        plot(f,P1) 
+        title("Single-Sided Amplitude Spectrum of the Original Music")
+        xlabel("f (Hz)")
+        ylabel("Phase of Fast Fourier Transform")
+
+        % Bode Plot of the Processed Sound
+        subplot(2,2,2);
         L = length(impulse_and_input_product);
         P2 = abs(impulse_and_input_product/L);
         P1 = P2(1:L/2+1);
@@ -87,8 +98,20 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         xlabel("Frequency (Hz)")
         ylabel("Magnitude of Fast Fourier Transform")
 
+        subplot(2,2,4);
+        L = length(impulse_and_input_product);
+        P2 = angle(impulse_and_input_product/L);
+        P1 = P2(1:L/2+1);
+        P1(2:(length(P1)-1)) = 2*P1(2:(length(P1)-1));
+        f = Fs_music*(0:(L/2))/L;
+        plot(f,P1) 
+        title("Single-Sided Amplitude Spectrum of the Original Music")
+        xlabel("f (Hz)")
+        ylabel("Phase of Fast Fourier Transform")
+
         % Plotting the Impulse Response
         figure;
+        subplot(1,2,1);
         legend_labels = create_legend(lp,hp,lp_hp,rlc);
         hold on;
         loglog(range_of_omega,abs(final_impulse_response));
@@ -103,7 +126,7 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         xlim([1 size(final_impulse_response_individual,2)])
         set(gca,'XScale','log');
 
-        figure;
+        subplot(1,2,2);
         hold on;
         loglog(range_of_omega,angle(final_impulse_response));
         for index = 1:sum_of_impulse_responses
@@ -116,10 +139,14 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         ylabel("Phase of Impulse Response")
         legend(legend_labels);
         xlim([1 size(final_impulse_response_individual,2)])
-        set(gca,'XScale','log');    
+        set(gca,'XScale','log');  
+
+        figure;
+        spectrogram(final_impulse_response_individual(1,:));
+        title("Spectrogram")
+
+
     end
-
-
 end
 
 
