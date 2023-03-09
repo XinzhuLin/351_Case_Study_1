@@ -142,7 +142,12 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         set(gca,'XScale','log');  
 
         figure;
+        subplot(1,2,1);
         spectrogram(final_impulse_response_individual(1,:));
+        title("Spectrogram")
+
+        subplot(1,2,2);
+        spectrogram(final_impulse_response_individual(2,:));
         title("Spectrogram")
 
 
