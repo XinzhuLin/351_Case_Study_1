@@ -23,21 +23,21 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
     if (~isempty(lp))
         for index = 1:length(lp)
             final_impulse_response_individual(index,:) = gain_lp(1,index).*((lp(1,index))./((1i.*range_of_omega) + lp(1,index)));
-            final_impulse_response = final_impulse_response + final_impulse_response_individual(index,:);
+            final_impulse_response=final_impulse_response+final_impulse_response_individual(index,:);
         end
     end
 
     if (~isempty(hp))
         for index = 1:length(hp)
             final_impulse_response_individual(index+length(lp),:) = gain_hp(1,index).*(1i.*range_of_omega)./((1i.*range_of_omega) + hp(1,index));
-            final_impulse_response = final_impulse_response + final_impulse_response_individual(index+length(lp),:);
+            final_impulse_response=final_impulse_response+final_impulse_response_individual(index+length(lp),:);
         end
     end
 
     if (~isempty(lp_hp))
         for index = 1:length(lp_hp)
             final_impulse_response_individual(index+length(lp)+length(hp),:) = gain_lp_hp(1,index).*((lp_hp(1,index))./((1i.*range_of_omega) + lp_hp(1,index))).*(1i.*range_of_omega)./((1i.*range_of_omega) + lp_hp(1,index));
-            final_impulse_response = final_impulse_response + final_impulse_response_individual(index+length(lp)+length(hp),:);
+            final_impulse_response=final_impulse_response+final_impulse_response_individual(index+length(lp)+length(hp),:);
         end
     end
 
@@ -48,7 +48,7 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
             c = rlc_elements(1,3);
             inverse_l_c = 1/(l*c);
             final_impulse_response_individual(index+length(lp)+length(hp)+length(lp_hp),:) = gain_rlc(1,index).*(inverse_l_c)./((1i.*range_of_omega).^2 + (r/l).*(1i.*range_of_omega) + inverse_l_c);
-            final_impulse_response = final_impulse_response + final_impulse_response_individual(index+length(lp)+length(hp),:);
+            final_impulse_response=final_impulse_response+final_impulse_response_individual(index+length(lp)+length(hp),:);
         end
      end
 
@@ -98,42 +98,39 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         loglog(range_of_omega,abs(final_impulse_response));
         for index = 1:sum_of_impulse_responses
             loglog(range_of_omega,abs(final_impulse_response_individual(index,:)));
-            if (~isempty(lp))
-                for index_label = 1:length(lp)
-                    name = "HLP" + index_label;
-                    legend_labels = [legend_labels name];
-                end
-            end
-            
-            if (~isempty(hp))
-                for index_label = 1:length(hp)
-                    name = "HHP" + index_label;
-                    legend_labels = [legend_labels name];
-                end
-            end
-
-            if (~isempty(lp_hp))
-                for index_label = 1:length(lp_hp)
-                    name = "HLPHP" + index_label;
-                    legend_labels = [legend_labels name];
-                end
-            end
-
-            if (~isempty(rlc))
-                for index_label = 1:length(rlc)
-                    name = "HRLC" + index_label;
-                    legend_labels = [legend_labels name];
-                end
+        end
+        if (~isempty(lp))
+           for index_label = 1:length(lp)
+               name = "HLP" + index_label;
+               legend_labels = [legend_labels name];
+           end
+        end       
+        if (~isempty(hp))
+           for index_label = 1:length(hp)
+               name = "HHP" + index_label;
+               legend_labels = [legend_labels name];
+           end
+        end
+        if (~isempty(lp_hp))
+           for index_label = 1:length(lp_hp)
+               name = "HLPHP" + index_label;
+               legend_labels = [legend_labels name];
+           end
+        end
+        if (~isempty(rlc))
+            for index_label = 1:length(rlc)
+                name = "HRLC" + index_label;
+                legend_labels = [legend_labels name];
             end
         end
         hold off;
         title("User Defined Impulse Response")
         xlabel("Frequency (Hz)")
         ylabel("Magnitude of Impulse Response")
-        disp(legend_labels)
         legend(legend_labels);
         xlim([1 size(final_impulse_response_individual,2)])
         set(gca,'XScale','log');
     end
+    disp(legend_labels)
 end
 
