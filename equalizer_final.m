@@ -6,12 +6,10 @@
 function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,plotting)    
     % Part 1: Importing the Sound
     [input, Fs_music] = audioread(music);
-    disp("Successful: Sound Import Complete");
     disp("Successful: Sound Length " + length(input));
 
     % Part 2: Calculating the FFT
     fft_of_sound = fft(input);
-    disp("Successful: FFT Calculated");
     disp("Successful: FFT Length " + length(fft_of_sound));
 
     % Part 3: Calculating the impulse responses with RC and RLC Filters
@@ -90,47 +88,38 @@ function equalizer_final(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_r
         ylabel("Magnitude of Fast Fourier Transform")
 
         % Plotting the Impulse Response
-
-        legend_labels = ["Sum of Impulse Responses"];
-
         figure;
+        legend_labels = create_legend(lp,hp,lp_hp,rlc);
         hold on;
         loglog(range_of_omega,abs(final_impulse_response));
         for index = 1:sum_of_impulse_responses
             loglog(range_of_omega,abs(final_impulse_response_individual(index,:)));
         end
-        if (~isempty(lp))
-           for index_label = 1:length(lp)
-               name = "HLP" + index_label;
-               legend_labels = [legend_labels name];
-           end
-        end       
-        if (~isempty(hp))
-           for index_label = 1:length(hp)
-               name = "HHP" + index_label;
-               legend_labels = [legend_labels name];
-           end
-        end
-        if (~isempty(lp_hp))
-           for index_label = 1:length(lp_hp)
-               name = "HLPHP" + index_label;
-               legend_labels = [legend_labels name];
-           end
-        end
-        if (~isempty(rlc))
-            for index_label = 1:length(rlc)
-                name = "HRLC" + index_label;
-                legend_labels = [legend_labels name];
-            end
-        end
         hold off;
-        title("User Defined Impulse Response")
+        title("User Defined Impulse Response Magnitude")
         xlabel("Frequency (Hz)")
         ylabel("Magnitude of Impulse Response")
         legend(legend_labels);
         xlim([1 size(final_impulse_response_individual,2)])
         set(gca,'XScale','log');
+
+        figure;
+        hold on;
+        loglog(range_of_omega,angle(final_impulse_response));
+        for index = 1:sum_of_impulse_responses
+            loglog(range_of_omega,angle(final_impulse_response_individual(index,:)));
+            disp(index);
+        end
+        disp(legend_labels);
+        title("User Defined Impulse Response Phase")
+        xlabel("Frequency (Hz)")
+        ylabel("Phase of Impulse Response")
+        legend(legend_labels);
+        xlim([1 size(final_impulse_response_individual,2)])
+        set(gca,'XScale','log');    
     end
-    disp(legend_labels)
+
+
 end
+
 
