@@ -45,21 +45,15 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
     disp("Successful: Low Pass and High Pass Filters")   
 
     % Part 4: Play the Sound
-    if volume > 1
-        final_music = final_music.*volume;
-    end
+    if volum
+    final_music = final_music.*volume;
     sound(final_music, fs_music);
 
     % Part 5: Plotting
-    if plotting == true
-        
-        % Plot the FFT
-        create_fft_plot(fft(original_music),fs_music,music)
-        create_fft_plot(fft(final_music),fs_music,music)
-
-        % Plot the Bode Plot
-        
+    if plotting
+        disp("plotting here")
     end
+   
 end
 
 

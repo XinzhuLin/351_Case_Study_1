@@ -28,8 +28,8 @@ close all;
 lp = [];
 gain_lp = [];
  
-hp = [2000];
-gain_hp = [2];
+hp = [2000 3000];
+gain_hp = [2 3];
 
 lp_hp = [];
 gain_lp_hp = [];
@@ -62,10 +62,10 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [10];
+volume = [1];
 plotting = true;
 
-equalizer_lsim("violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
 
 %% Part 1C: Unity Boost Example
 
@@ -88,7 +88,7 @@ rlc_elements = [];
 volume = [10];
 plotting = true;
 
-equalizer_lsim("violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
 
 %% Part 1C: Unity Boost Example
 
