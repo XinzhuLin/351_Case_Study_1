@@ -3,6 +3,9 @@
 % Class: Signals and Systems
 % Date: 3/17/2023
 
+% Parameter Description
+% L
+
 function labels = create_legend(lp,hp,lp_hp,rlc)
         
         legend_labels = ["Sum of Impulse Responses"];

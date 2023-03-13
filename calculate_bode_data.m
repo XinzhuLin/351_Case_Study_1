@@ -10,6 +10,7 @@ function bode_data = calculate_bode_data(music,lp_hp_rlc,inverse_tau)
     sys_lp = ones(1,length(time_vector));
     sys_hp = ones(1,length(time_vector));
     output = zeros(1,length(time_vector));
+    fft_of_music = fft(music);
     
     if ((lp_hp_rlc == "lp") || (lp_hp_rlc == "lp_hp"))
         sys_lp = tf(inverse_tau, [1 inverse_tau]);

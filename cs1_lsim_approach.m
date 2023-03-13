@@ -8,6 +8,13 @@
 clear;
 close all;
 
+a = tf([2 1],[3 4]);
+b = tf([2 1],[3 4]);
+
+t = [];
+t = [t a];
+t = [t b];
+
 %% Part 1A: Treble Boost Example
 
 % Our group has attempted to design our equalizer to be as adaptable and 
