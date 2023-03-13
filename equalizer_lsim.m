@@ -1,9 +1,9 @@
 %% Case Study 1
 % Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
 % Class: Signals and Systems
-% Date: 3/1/2023
+% Date: 3/17/2023
 
-function equalizer_final(music_name, lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,plotting)
+function equalizer_lsim(music_name, lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,plotting)
     % Part 1: Importing the Sound
     [music, fs_music] = audioread(music_name);
     length_of_sound = 0:length(music)-1;
