@@ -8,6 +8,8 @@
 clear;
 close all;
 
+%%
+[a,b] = audioread("m-violin-and-siren.wav");
 %% Part 1A: Treble Boost Example
 
 % Our group has attempted to design our equalizer to be as adaptable and 
@@ -38,7 +40,7 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [200];
+volume = [0.75];
 plotting = true;
 
 equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements, volume, plotting)
@@ -86,7 +88,7 @@ gain_rlc = [];
 rlc_elements = [];
 
 volume = [10];
-plotting = true;
+plottting = true;
 
 equalizer_lsim("violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
 
@@ -109,7 +111,7 @@ gain_rlc = [];
 rlc_elements = [];
 
 volume = [10];
-plotting = true;
+plottting = true;
 
 equalizer_lsim("violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
 
@@ -128,92 +130,9 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [];
-plotting = true;
+volume = [10];
+plottting = true;
 
-equalizer_lsim("m-giant-steps-bass-cut", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
-
-%% Part 2B: Processing Space Station by Art Farmer
-
-lp = [];
-gain_lp = [];
- 
-hp = [];
-gain_hp = [];
-
-lp_hp = [];
-gain_lp_hp = [];
-
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
-
-volume = [];
-plotting = true;
-
-equalizer_lsim("m-space-station-treble-cut.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
-
-%% Part 2B: Processing Space Station by Art Farmer
-
-lp = [];
-gain_lp = [];
- 
-hp = [];
-gain_hp = [];
-
-lp_hp = [];
-gain_lp_hp = [];
-
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
-
-volume = [];
-plotting = true;
-
-equalizer_lsim("m-space-station-treble-cut.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
-
-%% Part 3A: Processing Blue in Green by Miles Davis
-
-lp = [];
-gain_lp = [];
- 
-hp = [];
-gain_hp = [];
-
-lp_hp = [];
-gain_lp_hp = [];
-
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
-
-volume = [];
-plotting = true;
-
-equalizer_lsim("m-blue-in-green-with-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
-
-%% Part 4A: Creative Portion
-
-lp = [];
-gain_lp = [];
- 
-hp = [];
-gain_hp = [];
-
-lp_hp = [];
-gain_lp_hp = [];
-
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
-
-volume = [];
-plotting = true;
-
-equalizer_lsim("m-blue-in-green-with-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
-
-
-
+equalizer_lsim("m-giant", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
 
 
