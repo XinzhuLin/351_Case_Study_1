@@ -1,9 +1,14 @@
+%% Case Study 1
+% Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
+% Class: Signals and Systems
+% Date: 3/17/2023
 
-
-
-function create_impulse_graph(final_impulse_response_individual,final_impulse_response,range_of_omega,sum_of_impulse_responses,legend_labels)
+function create_bode_plot(final_impulse_response_individual,final_impulse_response,range_of_omega,sum_of_impulse_responses,legend_labels)
         figure;
-        subplot(1,2,1);
+        
+        % The following code calculates the magnitude of the bode plot for
+        % each of the bands
+        subplot(2,1,1);
         hold on;
         loglog(range_of_omega,abs(final_impulse_response));
         for index = 1:sum_of_impulse_responses
@@ -17,7 +22,9 @@ function create_impulse_graph(final_impulse_response_individual,final_impulse_re
         xlim([1 size(final_impulse_response_individual,2)])
         set(gca,'XScale','log');
 
-        subplot(1,2,2);
+        % The following code calculates the phase of the bode plot for
+        % each of the bands
+        subplot(2,1,2);
         hold on;
         loglog(range_of_omega,angle(final_impulse_response));
         for index = 1:sum_of_impulse_responses

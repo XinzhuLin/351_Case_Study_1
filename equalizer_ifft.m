@@ -1,7 +1,7 @@
 %% Case Study 1
 % Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
 % Class: Signals and Systems
-% Date: 3/1/2023
+% Date: 3/17/2023
 
 function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,plotting)    
     % Part 1: Importing the Sound
@@ -65,21 +65,21 @@ function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
         % Legend Labels to be Used in the Following Graphs
         legend_labels = create_legend(lp,hp,lp_hp,rlc);
 
-        % Bode Plot of the Original Sound 
-        create_fft_plot(fft_of_sound,Fs_music, music)
+        % FFT Plot of the Original Sound 
+        create_fft_plot(fft_of_sound,Fs_music, "Orignal " + music)
 
-        % Bode Plot of the Processed Sound
+        % FFT Plot of the Processed Sound
         create_fft_plot(impulse_and_input_product,Fs_music, "Processed " + music)
 
-        % Plotting the Impulse Response
-        create_impulse_graph(final_impulse_response_individual,final_impulse_response,range_of_omega,sum_of_impulse_responses,legend_labels)
+        % Magnitude and Phase by Band Plots
+        create_bode_plot(final_impulse_response_individual,final_impulse_response,range_of_omega,sum_of_impulse_responses,legend_labels)
 
+        % Spectrogram Plots
         figure;
-        subplot(1,2,1);
+        subplot(2,1,1);
         spectrogram(input);
         title("Spectrogram of Original " + music);
-
-        subplot(1,2,2);
+        subplot(2,1,2);
         spectrogram(final_output)
         title("Spectrogram of Processed " + music);
     end  

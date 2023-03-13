@@ -1,7 +1,7 @@
 %% Case Study 1
 % Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
 % Class: Signals and Systems
-% Date: 3/1/2023
+% Date: 3/17/2023
 
 %%
 clear;
