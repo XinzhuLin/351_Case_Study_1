@@ -7,11 +7,11 @@
 clear;
 close all;
 
-lp = [100];
-gain_lp = [5];
+lp = [100, 200];
+gain_lp = [5, 6];
  
-hp = [400];
-gain_hp = [8];
+hp = [];
+gain_hp = [];
 
 lp_hp = [];
 gain_lp_hp = [];
@@ -20,7 +20,7 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [1 1 1];
 
-equalizer_final("violin_w_siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,true)
+equalizer_original("violin_w_siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,true)
 
 %%
 % Choose a signal to enhance or improve with your system. It could be an audio or music 
@@ -36,9 +36,3 @@ equalizer_final("violin_w_siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_h
 % (magnitude and phase). You can use, e.g., the sweep of complex exponential inputs 
 % through the frequency range (as in Homework 3 Matlab). --> I did not do
 % this correctly
-
-
-
-%% 
-
-
