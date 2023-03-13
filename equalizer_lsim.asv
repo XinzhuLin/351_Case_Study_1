@@ -32,9 +32,9 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
     if (~isempty(lp_hp))
         for index = 1:length(lp_hp)
-            lp_sys = tf(lp_hp(1,index), [1 lp_hp(1,index)]);
+            lp_sys = tf(lp_hp(1,index), [1 lp(1,index)]);
             hp_sys = tf([1 0],[1 lp_hp(1,index)]);
-            final_impulse_response_individual(length(lp)+index,:) = gain_hp(1,index).*lsim(lp_sys,hp_sys,final_sound,length_of_sound);
+            final_impulse_response_individual(length(lp)+index,:) = gain_hp(1,index).*lsim(hp_sys,final_sound,length_of_sound);
             final_sound = gain_hp(1,index).*lsim(hp_sys,final_sound,length_of_sound);
         end
     end
