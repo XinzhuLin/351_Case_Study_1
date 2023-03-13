@@ -19,28 +19,28 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
     % Part 3: Using LSIM to convolute the final sound
     if (~isempty(lp))
         for index = 1:length(lp)
-            transfer_function_list(index,:) = [transfer_function_list tf(lp(1,index), [1 lp(1,index)])];
-            final_impulse_response_individual(index,:) = gain_lp(1,index).*lsim(transfer_function_list(index,:),original_music,time_vector); 
-            final_music = gain_lp(1,index).*lsim(transfer_function_list(index,:),final_music,length_of_sound);
+            transfer_function_list = [transfer_function_list tf(lp(1,index), [1 lp(1,index)])];
+            final_impulse_response_individual(index,:) = gain_lp(1,index).*lsim(transfer_function_list(end),original_music,time_vector); 
+            final_music = gain_lp(1,index).*lsim(transfer_function_list(end),final_music,length_of_sound);
         end
     end
     disp("Successful: Implemented Low Pass Filters")
 
     if (~isempty(hp))
         for index = 1:length(hp)
-            transfer_function_list(length(lp)+index,:) = [transfer_function_list tf([1 0],[1 hp(1,index)])];
-            final_impulse_response_individual(length(lp)+index,:) = gain_hp(1,index).*lsim(transfer_function_list(length(lp)+index,:),original_music,time_vector);
-            final_music = gain_hp(1,index).*lsim(transfer_function_list(length(lp)+index,:),final_music,time_vector);
+            transfer_function_list = [transfer_function_list tf([1 0],[1 hp(1,index)])];
+            final_impulse_response_individual(length(lp)+index,:) = gain_hp(1,index).*lsim(transfer_function_list(end),original_music,time_vector);
+            final_music = gain_hp(1,index).*lsim(transfer_function_list(end),final_music,time_vector);
         end
     end
     disp("Successful: Implemented High Pass Filters")
 
     if (~isempty(lp_hp))
         for index = 0:(length(lp_hp)-1)
-            transfer_function_list(length(lp)+length(hp)+2*(index+1),:) = [transfer_function_list tf(lp_hp(1,index), [1 lp_hp(1,index)])];
-            transfer_function_list(length(lp)+length(hp)+2*(index+2),:) = [transfer_function_list tf([1 0],[1 lp_hp(1,index)])];
-            final_impulse_response_individual(length(lp)+length(hp)+index,:) = gain_lp_hp(1,index).*lsim(lp_sys,hp_sys,original_music,time_vector);
-            final_music = gain_lp_hp(1,index).*lsim(lp_sys,hp_sys,final_music,time_vector);
+            transfer_function_list = [transfer_function_list tf(lp_hp(1,index), [1 lp_hp(1,index)])];
+            transfer_function_list = [transfer_function_list tf([1 0],[1 lp_hp(1,index)])];
+            final_impulse_response_individual(length(lp)+length(hp)+index,:) = gain_lp_hp(1,index).*lsim(transfer_function_list(end),transfer_function_list(end-1),original_music,time_vector);
+            final_music = gain_lp_hp(1,index).*lsim(transfer_function_list(end),transfer_function_list(end-1),final_music,time_vector);
         end
     end
     disp("Successful: Low Pass and High Pass Filters")   
@@ -69,11 +69,11 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
         spectrogram(final_music);
         title("Spectrogram of Processed " + music);
 
-        % PLot the Bode Data
+        % Plot the Bode Data
         figure;
         hold on;
         for index = 1:sum_of_impulse_responses
-            bode(transfer_function_list);
+            bode(transfer_function_list(index),time_vector);
         end
         hold off;
     end
