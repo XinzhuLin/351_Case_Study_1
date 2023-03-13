@@ -8,6 +8,8 @@
 clear;
 close all;
 
+%%
+[a,b] = audioread("m-violin-and-siren.wav");
 %% Part 1A: Treble Boost Example
 
 % Our group has attempted to design our equalizer to be as adaptable and 

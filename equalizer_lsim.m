@@ -9,7 +9,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
     disp("Successful: Imported Sound")
 
     % Part 2: Setting Up Parameters for the Impulse Response Bands & Input
-    time_vector = 1:length(original_music);
+    time_vector = 0:length(original_music);
     sum_of_impulse_responses = length(lp)+length(hp)+length(lp_hp)+length(rlc);
     final_impulse_response = zeros(1,length(original_music));
     final_impulse_response_individual = zeros(sum_of_impulse_responses, length(original_music));
