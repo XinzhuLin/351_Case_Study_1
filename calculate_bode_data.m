@@ -4,7 +4,7 @@
 % Date: 3/17/2023
 
 function bode_data = calculate_bode_data(music,lp_hp_rlc,inverse_tau)
-    
+  
     % Part 1: Sets up the parameters
     time_vector = logspace(1,4,100);
     sys_lp = ones(1,length(time_vector));

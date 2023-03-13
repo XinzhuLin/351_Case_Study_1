@@ -4,6 +4,7 @@
 % Date: 3/17/2023
 
 function create_bode_plot(final_impulse_response_individual,final_impulse_response,range_of_omega,sum_of_impulse_responses,legend_labels)
+        
         figure;
         
         % The following code calculates the magnitude of the bode plot for

@@ -1,9 +1,10 @@
 %% Case Study 1
 % Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
 % Class: Signals and Systems
-% Date: 3/1/2023
+% Date: 3/17/2023
 
 function create_fft_plot(data,Fs,music_title)
+    
     figure;
     
     % The following sets up the parameters for plotting as seen in the
