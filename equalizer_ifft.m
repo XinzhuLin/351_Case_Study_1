@@ -14,8 +14,8 @@ function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
     % Part 3: Calculating the impulse responses with RC and RLC Filters
     range_of_omega = 1:length(fft_of_sound);
-    final_impulse_response = zeros(1,length(fft_of_sound));
     sum_of_impulse_responses = length(lp)+length(hp)+length(lp_hp)+length(rlc);
+    final_impulse_response = zeros(1,length(fft_of_sound));
     final_impulse_response_individual = zeros(sum_of_impulse_responses, length(fft_of_sound));
 
     if (~isempty(lp))
