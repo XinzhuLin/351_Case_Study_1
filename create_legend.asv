@@ -42,10 +42,10 @@ function labels = create_legend(lp,hp,lp_hp,rlc,include_first)
         if include_first
            labels = legend_labels;    
         else
-           if length(legend_labels) == 2
-              labels = legend_labels(1,2);
+           if length(legend_labels) > 2
+              labels = legend_labes(:,);
            else
-              labels = legend_labels(1,[2 end]);
+              
            end
         end
 end

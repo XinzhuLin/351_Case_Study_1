@@ -54,7 +54,9 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
     % Part 5: Plotting
     if plotting == true
-        legend_labels = create_legend(lp,hp,lp_hp,rlc,false);
+
+        disp(lp_hp)
+        legend_labels = create_legend(lp,hp,lp_hp,rlc);
 
         % Plot the FFT
         create_fft_plot(fft_of_original_music,fs_music,music)
@@ -76,8 +78,13 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
             bode(transfer_function_list(index),time_vector);
         end
         hold off;
-        legend(legend_labels);
+        disp("attention here: " + legend_labels(:,[2 end]))
+        legend(legend_labels(:,[2 end]));
         title("Bode Plot by User Inputted Filter");
+
+        % Bode Plot for Entire Sound
+        %figure;
+
     end
 end
 

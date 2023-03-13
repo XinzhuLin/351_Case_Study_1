@@ -72,11 +72,11 @@ equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_l
 % To amplify a signal frequency, we can implement a low pass and a high
 % pass filter with the same cutoff frequency and add a gain.
 
-lp = [];
-gain_lp = [];
+lp = [100];
+gain_lp = [5];
  
-hp = [];
-gain_hp = [];
+hp = [500];
+gain_hp = [2];
 
 lp_hp = [1500];
 gain_lp_hp = [5];
@@ -85,7 +85,7 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [10];
+volume = [1000];
 plotting = true;
 
 equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
