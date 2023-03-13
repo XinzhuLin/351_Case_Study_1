@@ -1,0 +1,23 @@
+%% Case Study 1
+% Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
+% Class: Signals and Systems
+% Date: 3/1/2023
+
+function create_fft_plot(data,Fs,music_title)
+    figure;
+    
+    % The following sets up the parameters for plotting as seen in the
+    % documentation for the fft function
+    title_of_fft = "Single-Sided Amplitude Spectrum of " + music_title;
+    L = length(data);
+    P2 = abs(data/L);
+    P1 = P2(1:L/2+1);
+    P1(2:(length(P1)-1)) = 2*P1(2:(length(P1)-1));
+    f = Fs*(0:(L/2))/L;
+    
+    % The following code plots the fft
+    plot(f,P1);
+    title(title_of_fft);
+    xlabel("f (Hz)");
+    ylabel("Magnitude of Fast Fourier Transform");
+end

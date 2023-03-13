@@ -3,7 +3,7 @@
 % Class: Signals and Systems
 % Date: 3/1/2023
 
-function equalizer_original(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,plotting)    
+function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,plotting)    
     % Part 1: Importing the Sound
     [input, Fs_music] = audioread(music);
     disp("Successful: Sound Length " + length(input));
@@ -52,7 +52,7 @@ function equalizer_original(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gai
 
     % Part 4: Multiplying the Impulse Response and the FFT of Input &
     % Finding the Inverse Fast Fourier Transform
-    impulse_and_input_product = final_impulse_response.*fft_of_sound(range_of_omega)';
+    impulse_and_input_product = final_impulse_response.*fft_of_sound(range_of_omega)'.*5;
     final_output = flip(abs(ifft(impulse_and_input_product)));
     disp("Successful: Length of Output " + length(final_output));
 
@@ -62,28 +62,27 @@ function equalizer_original(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gai
 
     % Part 6: Optional Plotting 
     if plotting == true
-        % Bode Plot of the Original Sound
-        create_bode_plot(fft_of_sound,Fs_music)
+        % Legend Labels to be Used in the Following Graphs
+        legend_labels = create_legend(lp,hp,lp_hp,rlc);
+
+        % Bode Plot of the Original Sound 
+        create_fft_plot(fft_of_sound,Fs_music, music)
 
         % Bode Plot of the Processed Sound
-        create_bode_plot(impulse_and_input_product,Fs_music)
+        create_fft_plot(impulse_and_input_product,Fs_music, "Processed " + music)
 
         % Plotting the Impulse Response
-        legend_labels = create_legend(lp,hp,lp_hp,rlc);
         create_impulse_graph(final_impulse_response_individual,final_impulse_response,range_of_omega,sum_of_impulse_responses,legend_labels)
 
         figure;
         subplot(1,2,1);
-        spectrogram(final_impulse_response_individual(1,:));
-        title("Spectrogram")
+        spectrogram(input);
+        title("Spectrogram of Original " + music);
 
-        if (sum_of_impulse_responses > 1)
-            subplot(1,2,2);
-            spectrogram(final_impulse_response_individual(2,:));
-            title("Spectrogram")
-        end
-        
-    end
+        subplot(1,2,2);
+        spectrogram(final_output)
+        title("Spectrogram of Processed " + music);
+    end  
 end
 
 
