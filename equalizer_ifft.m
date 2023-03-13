@@ -3,7 +3,7 @@
 % Class: Signals and Systems
 % Date: 3/17/2023
 
-function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,plotting)    
+function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,volume,plotting)    
     % Part 1: Importing the Sound
     [input, Fs_music] = audioread(music);
     disp("Successful: Sound Length " + length(input));
@@ -52,7 +52,7 @@ function equalizer_ifft(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
     % Part 4: Multiplying the Impulse Response and the FFT of Input &
     % Finding the Inverse Fast Fourier Transform
-    impulse_and_input_product = final_impulse_response.*fft_of_sound(range_of_omega)'.*5;
+    impulse_and_input_product = final_impulse_response.*fft_of_sound(range_of_omega)'.*volume;
     final_output = flip(abs(ifft(impulse_and_input_product)));
     disp("Successful: Length of Output " + length(final_output));
 
