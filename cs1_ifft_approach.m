@@ -18,7 +18,7 @@ close all;
 % In our example, we have implemented a high pass filter with a cutoff 
 % frequency of 2000 hertz with a gain of 2.
 
-% The volume parameter is to add an additional gain to all of the filters
+% The volume parameter adds an additional gain to all of the filters
 % in case the combination of the filters brings the volume of the speaker
 % down too drastically.
 
