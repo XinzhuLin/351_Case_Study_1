@@ -8,10 +8,6 @@
 clear;
 close all;
 
-[a,b] = audioread("m-violin-and-siren.wav");
-
-[c,d] = audioread("m-giant-steps-bass-cut.wav");
-
 %% Part 1A: Treble Boost Example
 
 % Our group has attempted to design our equalizer to be as adaptable and 
@@ -105,8 +101,8 @@ gain_lp_hp = [5];
 rlc_elements = [[1 1 1]];
 gain_rlc = [2];
 
-volume = [10000];
-plotting = false;
+volume = [30000];
+plotting = true;
 
 equalizer_lsim("m-giant-steps-bass-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 

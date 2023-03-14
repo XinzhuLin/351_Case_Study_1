@@ -101,8 +101,8 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
             cumulative_response = cumulative_response+transfer_function_list(index);
         end
         bode(cumulative_response);
-        for index = 1:sum_of_impulse_responses
-            bode(transfer_function_list(index),time_vector);
+        for index = 0:(sum_of_impulse_responses-1)
+            bode(transfer_function_list(size(original_music,2)*index+1),time_vector);
         end
         hold off;
         legend(legend_labels);
