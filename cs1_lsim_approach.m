@@ -60,7 +60,7 @@ gain_lp_hp = [];
 rlc_elements = [];
 gain_rlc = [];
 
-volume = [];
+volume = [2];
 plotting = true;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
@@ -84,7 +84,7 @@ gain_rlc = [];
 rlc_elements = [];
 
 volume = [1000];
-plotting = true;
+plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
@@ -106,8 +106,8 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [10];
-plotting = true;
+volume = [300];
+plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
@@ -129,6 +129,26 @@ rlc_elements = [];
 volume = [];
 plotting = true;
 
+equalizer_lsim("m-giant-steps-bass-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
+
+%% Part 2B: Processing Space Station by Art Farmer
+
+lp = [];
+gain_lp = [];
+ 
+hp = [];
+gain_hp = [];
+
+lp_hp = [];
+gain_lp_hp = [];
+
+rlc = [];
+gain_rlc = [];
+rlc_elements = [];
+
+volume = [];
+plotting = false;
+
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 2B: Processing Space Station by Art Farmer
@@ -147,27 +167,7 @@ gain_rlc = [];
 rlc_elements = [];
 
 volume = [];
-plotting = true;
-
-equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
-
-%% Part 2B: Processing Space Station by Art Farmer
-
-lp = [];
-gain_lp = [];
- 
-hp = [];
-gain_hp = [];
-
-lp_hp = [];
-gain_lp_hp = [];
-
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
-
-volume = [];
-plotting = true;
+plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
@@ -187,7 +187,7 @@ gain_rlc = [];
 rlc_elements = [];
 
 volume = [];
-plotting = true;
+plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
@@ -207,11 +207,6 @@ gain_rlc = [];
 rlc_elements = [];
 
 volume = [];
-plotting = true;
+plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
-
-
-
-
-
