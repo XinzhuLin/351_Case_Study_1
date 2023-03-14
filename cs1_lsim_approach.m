@@ -8,14 +8,6 @@
 clear;
 close all;
 
-a= [1 1 1];
-b= [1 1 1];
-c= [a b];
-
-disp("size" + size(c))
-
-disp("length" + length(c))
-
 %% Part 1A: Treble Boost Example
 
 % Our group has attempted to design our equalizer to be as adaptable and 
@@ -33,19 +25,19 @@ disp("length" + length(c))
 % The boolean parameter at the end of the function determines whether the
 % user would like the associated plots with their code
 
-lp = [2000];
-gain_lp = [2];
+lp = [];
+gain_lp = [];
  
-hp = [100];
-gain_hp = [2];
+hp = [1000];
+gain_hp = [3];
 
 lp_hp = [];
 gain_lp_hp = [];
 
-rlc_elements = [[1 2 1] [3 2 1]];
-gain_rlc = [2 2];
+rlc_elements = [];
+gain_rlc = [];
 
-volume = [200];
+volume = [300];
 plotting = true;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
@@ -65,10 +57,10 @@ gain_hp = [];
 lp_hp = [];
 gain_lp_hp = [];
 
-rlc_elements = [[1 1 1]];
+rlc_elements = [];
 gain_rlc = [];
 
-volume = [1];
+volume = [];
 plotting = true;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
