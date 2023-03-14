@@ -25,11 +25,11 @@ close all;
 % The boolean parameter at the end of the function determines whether the
 % user would like the associated plots with their code
 
-lp = [];
+lp = [300];
 gain_lp = [];
  
-hp = [1000];
-gain_hp = [3];
+hp = [];
+gain_hp = [];
 
 lp_hp = [];
 gain_lp_hp = [];
@@ -37,8 +37,8 @@ gain_lp_hp = [];
 rlc_elements = [];
 gain_rlc = [];
 
-volume = [300];
-plotting = true;
+volume = [1];
+plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
@@ -48,8 +48,8 @@ equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,r
 % code. In the following example, we have implemented a low pass filter
 % with a cutoff frequency of 100 hertz and a gain of 3.
 
-lp = [100];
-gain_lp = [3];
+lp = [1000 1000 1000 ];
+gain_lp = [3 3 3];
  
 hp = [];
 gain_hp = [];

@@ -78,8 +78,8 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         legend_labels = create_legend(lp,hp,lp_hp,rlc_elements,true);
 
         % Plot the FFT
-        create_fft_plot(fft_of_original_music,fs_music,music)
-        create_fft_plot(fft_of_final_music,fs_music,music)
+        create_fft_plot(fft_of_original_music,fs_music,"original " + music)
+        create_fft_plot(fft_of_final_music,fs_music,"final " + music)
 
         % Plot the Spectrogram of the Music
         for column = 1:size(original_music,2)
