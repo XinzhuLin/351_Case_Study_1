@@ -8,7 +8,7 @@
 
 function labels = create_legend(lp,hp,lp_hp,rlc,include_first)
         
-        legend_labels = ["Sum of Impulse Responses"];
+        legend_labels = ["Combination of Impulse Responses"];
         
         % The following code creates the legend labels for each of the
         % filters that the user has implemented
@@ -33,7 +33,7 @@ function labels = create_legend(lp,hp,lp_hp,rlc,include_first)
            end
         end
         if (~isempty(rlc))
-            for index_label = 1:length(rlc)
+            for index_label = 1:length(rlc)/3
                 name = "HRLC" + index_label;
                 legend_labels = [legend_labels name];
             end

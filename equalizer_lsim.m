@@ -3,14 +3,14 @@
 % Class: Signals and Systems
 % Date: 3/17/2023
 
-function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rlc,rlc_elements,volume,plotting)    
+function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)    
     % Part 1: Importing the Sound
     [original_music, fs_music] = audioread(music);
     disp("Successful: Imported Sound")
 
     % Part 2: Setting Up Parameters for the Impulse Response Bands & Input
     time_vector = 0:(length(original_music)-1);
-    sum_of_impulse_responses = length(lp)+length(hp)+length(lp_hp)+length(rlc);
+    sum_of_impulse_responses = length(lp)+length(hp)+length(lp_hp)+(length(rlc_elements)/3);
     final_impulse_response_individual = zeros(sum_of_impulse_responses, length(original_music));
     transfer_function_list = [];
     final_music = original_music;
@@ -44,14 +44,14 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
     end
     disp("Successful: Low Pass and High Pass Filters")   
 
-    if (~isempty(rlc))
-        for index = 1:length(rlc)
-            r = rlc_elements(1,1);
-            l = rlc_elements(1,2);
-            c = rlc_elements(1,3);
+    if (~isempty(rlc_elements))
+        for index = 0:((length(rlc_elements)/3)-1)
+            r = rlc_elements(1,3*index+1);
+            l = rlc_elements(1,3*index+2);
+            c = rlc_elements(1,3*index+3);
             transfer_function_list = [transfer_function_list tf(1/(l*c),[1,r/l,1/(l*c)])];
-            final_impulse_response_individual(length(lp)+length(hp)+length(lp_hp)+index,:) = gain_rlc(1,index).*lsim(transfer_function_list(end),original_music,time_vector);
-            final_music = gain_rlc(1,index).*lsim(transfer_function_list(end),final_music,time_vector);
+            final_impulse_response_individual(length(lp)+length(hp)+length(lp_hp)+index+1,:) = gain_rlc(1,index+1).*lsim(transfer_function_list(end),original_music,time_vector);
+            final_music = gain_rlc(1,index+1).*lsim(transfer_function_list(end),final_music,time_vector);
         end
     end
     disp("Successful: RLC Filters")
@@ -66,7 +66,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
     % Part 5: Plotting
     if plotting == true
-        legend_labels = create_legend(lp,hp,lp_hp,rlc,true);
+        legend_labels = create_legend(lp,hp,lp_hp,rlc_elements,true);
 
         % Plot the FFT
         create_fft_plot(fft_of_original_music,fs_music,music)
@@ -88,8 +88,8 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
         for index = 1:sum_of_impulse_responses
             cumulative_response = cumulative_response+transfer_function_list(index);
         end
+        bode(cumulative_response);
         for index = 1:sum_of_impulse_responses
-            bode(cumulative_response);
             bode(transfer_function_list(index),time_vector);
         end
         hold off;

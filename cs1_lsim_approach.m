@@ -8,6 +8,14 @@
 clear;
 close all;
 
+a= [1 1 1];
+b= [1 1 1];
+c= [a b];
+
+disp("size" + size(c))
+
+disp("length" + length(c))
+
 %% Part 1A: Treble Boost Example
 
 % Our group has attempted to design our equalizer to be as adaptable and 
@@ -34,14 +42,13 @@ gain_hp = [2];
 lp_hp = [];
 gain_lp_hp = [];
 
-rlc = [100];
-gain_rlc = [2];
-rlc_elements = [1 5 1];
+rlc_elements = [[1 2 1] [3 2 1]];
+gain_rlc = [2 2];
 
 volume = [200];
 plotting = true;
 
-equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements, volume, plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 1B: Bass Boost Example
 
@@ -58,14 +65,13 @@ gain_hp = [];
 lp_hp = [];
 gain_lp_hp = [];
 
-rlc = [];
+rlc_elements = [[1 1 1]];
 gain_rlc = [];
-rlc_elements = [];
 
 volume = [1];
 plotting = true;
 
-equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 1C: Unity Boost Example
 
@@ -88,7 +94,7 @@ rlc_elements = [];
 volume = [1000];
 plotting = true;
 
-equalizer_lsim("m-violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 1C: Unity Boost Example
 
@@ -111,7 +117,7 @@ rlc_elements = [];
 volume = [10];
 plotting = true;
 
-equalizer_lsim("violin-and-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 2A: Processing Giant Steps By John Coltrane
 
@@ -131,7 +137,7 @@ rlc_elements = [];
 volume = [];
 plotting = true;
 
-equalizer_lsim("m-giant-steps-bass-cut", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 2B: Processing Space Station by Art Farmer
 
@@ -151,7 +157,7 @@ rlc_elements = [];
 volume = [];
 plotting = true;
 
-equalizer_lsim("m-space-station-treble-cut.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 2B: Processing Space Station by Art Farmer
 
@@ -171,7 +177,7 @@ rlc_elements = [];
 volume = [];
 plotting = true;
 
-equalizer_lsim("m-space-station-treble-cut.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 3A: Processing Blue in Green by Miles Davis
 
@@ -191,7 +197,7 @@ rlc_elements = [];
 volume = [];
 plotting = true;
 
-equalizer_lsim("m-blue-in-green-with-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 4A: Creative Portion
 
@@ -211,7 +217,7 @@ rlc_elements = [];
 volume = [];
 plotting = true;
 
-equalizer_lsim("m-blue-in-green-with-siren.wav", lp, gain_lp, hp, gain_hp, lp_hp, gain_lp_hp, rlc, gain_rlc,rlc_elements,volume,plotting)
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 
 
