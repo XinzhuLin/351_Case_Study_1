@@ -101,7 +101,7 @@ gain_lp_hp = [5];
 rlc_elements = [[1 1 1]];
 gain_rlc = [2];
 
-volume = [2000];
+volume = [10000];
 plotting = false;
 
 equalizer_lsim("m-giant-steps-bass-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)

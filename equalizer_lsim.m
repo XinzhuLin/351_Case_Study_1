@@ -84,7 +84,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         % Plot the Spectrogram of the Music
         figure;
         for column = 1:size(original_music,2)
-            spectrogram(orignal_music(column,1))
+            spectrogram(original_music(column,1))
             title("Original Music Column " + column)
         end
         for column = 1:size(original_music,2)
