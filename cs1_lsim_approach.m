@@ -25,18 +25,18 @@ close all;
 % The boolean parameter at the end of the function determines whether the
 % user would like the associated plots with their code
 
-lp = [];
-gain_lp = [];
+lp = [2000];
+gain_lp = [2];
  
-hp = [2000 3000];
-gain_hp = [2 3];
+hp = [100];
+gain_hp = [2];
 
 lp_hp = [];
 gain_lp_hp = [];
 
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
+rlc = [100];
+gain_rlc = [2];
+rlc_elements = [1 5 1];
 
 volume = [200];
 plotting = true;

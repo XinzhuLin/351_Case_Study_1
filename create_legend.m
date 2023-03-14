@@ -19,7 +19,7 @@ function labels = create_legend(lp,hp,lp_hp,rlc,include_first)
            end
         end       
         if (~isempty(hp))
-           for index_label = 1:length(hp)
+            for index_label = 1:length(hp)
                name = "HHP" + index_label;
                legend_labels = [legend_labels name];
            end
@@ -45,7 +45,7 @@ function labels = create_legend(lp,hp,lp_hp,rlc,include_first)
            if length(legend_labels) == 2
               labels = legend_labels(1,2);
            else
-              labels = legend_labels(1,[2 end]);
+              labels = legend_labels(1,2:end);
            end
         end
 end

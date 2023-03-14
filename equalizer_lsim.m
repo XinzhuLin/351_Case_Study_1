@@ -44,6 +44,18 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
     end
     disp("Successful: Low Pass and High Pass Filters")   
 
+    if (~isempty(rlc))
+        for index = 1:length(rlc)
+            r = rlc_elements(1,1);
+            l = rlc_elements(1,2);
+            c = rlc_elements(1,3);
+            transfer_function_list = [transfer_function_list tf(1/(l*c),[1,r/l,1/(l*c)])];
+            final_impulse_response_individual(length(lp)+length(hp)+length(lp_hp)+index,:) = gain_rlc(1,index).*lsim(transfer_function_list(end),original_music,time_vector);
+            final_music = gain_rlc(1,index).*lsim(transfer_function_list(end),final_music,time_vector);
+        end
+    end
+    disp("Successful: RLC Filters")
+
     % Part 4: Play the Sound
     if volume ~= 0
         final_music = final_music.*volume;
@@ -79,6 +91,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
         legend(legend_labels);
         title("Bode Plot by User Inputted Filter");
     end
+    disp(legend_labels);
 end
 
 
