@@ -66,7 +66,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
     % Part 5: Plotting
     if plotting == true
-        legend_labels = create_legend(lp,hp,lp_hp,rlc,false);
+        legend_labels = create_legend(lp,hp,lp_hp,rlc,true);
 
         % Plot the FFT
         create_fft_plot(fft_of_original_music,fs_music,music)
@@ -83,8 +83,13 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc,gain_rl
 
         % Bode Plot by Band
         figure;
+        cumulative_response = 0;
         hold on;
         for index = 1:sum_of_impulse_responses
+            cumulative_response = cumulative_response+transfer_function_list(index);
+        end
+        for index = 1:sum_of_impulse_responses
+            bode(cumulative_response);
             bode(transfer_function_list(index),time_vector);
         end
         hold off;
