@@ -82,13 +82,14 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         create_fft_plot(fft_of_final_music,fs_music,music)
 
         % Plot the Spectrogram of the Music
-        figure;
         for column = 1:size(original_music,2)
-            spectrogram(original_music(column,1))
+            figure;
+            spectrogram(original_music(:,column))
             title("Original Music Column " + column)
         end
         for column = 1:size(original_music,2)
-            spectrogram(final_music(column,1))
+            figure;
+            spectrogram(final_music(:,column))
             title("Final Music Column " + column)
         end
 
