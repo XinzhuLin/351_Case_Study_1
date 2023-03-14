@@ -63,6 +63,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
     sound(final_music, fs_music);
     fft_of_final_music = fft(final_music);
     fft_of_original_music = fft(original_music);
+    disp("Successful: Played Sound")
 
     % Part 5: Plotting
     if plotting == true

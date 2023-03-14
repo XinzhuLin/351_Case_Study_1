@@ -60,31 +60,8 @@ gain_lp_hp = [];
 rlc_elements = [];
 gain_rlc = [];
 
-volume = [2];
+volume = [1];
 plotting = true;
-
-equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
-
-%% Part 1C: Unity Boost Example
-
-% To amplify a signal frequency, we can implement a low pass and a high
-% pass filter with the same cutoff frequency and add a gain.
-
-lp = [100];
-gain_lp = [5];
- 
-hp = [500];
-gain_hp = [2];
-
-lp_hp = [1500];
-gain_lp_hp = [5];
-
-rlc = [];
-gain_rlc = [];
-rlc_elements = [];
-
-volume = [1000];
-plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
@@ -106,15 +83,15 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [300];
+volume = [2000];
 plotting = false;
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 2A: Processing Giant Steps By John Coltrane
 
-lp = [];
-gain_lp = [];
+lp = [100];
+gain_lp = [3];
  
 hp = [];
 gain_hp = [];
@@ -126,7 +103,7 @@ rlc = [];
 gain_rlc = [];
 rlc_elements = [];
 
-volume = [];
+volume = [3];
 plotting = true;
 
 equalizer_lsim("m-giant-steps-bass-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
@@ -149,7 +126,7 @@ rlc_elements = [];
 volume = [];
 plotting = false;
 
-equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
+equalizer_lsim("m-space-station-treble-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting)
 
 %% Part 2B: Processing Space Station by Art Farmer
 
