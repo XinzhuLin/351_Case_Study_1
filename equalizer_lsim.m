@@ -132,7 +132,6 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         end
         hold off;    
         legend(legend_labels);
-        disp(legend_labels);  
         title("Bode Plot by User Inputted Filter");
     end
 end

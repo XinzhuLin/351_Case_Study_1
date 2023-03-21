@@ -126,31 +126,33 @@ gain_rlc = {[1] [2]};
 
 volume = [30];
 plotting = true;
-spectogram = [];
+spectogram = [2000];
 
 equalizer_lsim("m-space-station-treble-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
 %% Part 3A: Processing Blue in Green by Miles Davis
 
-lp = {[10000.*ones(10)]};
-gain_lp = {[ones(length(lp))]};
+lp = {[0.002.*ones(1)] [0.00015.*ones(1)]};
+gain_lp = {[10.*ones(length(lp{1}))] [100.*ones(length(lp{2}))]};
  
 hp = {};
 gain_hp = {};
 
-lp_hp = {};
-gain_lp_hp = {};
+lp_hp = {[0.05.*ones(5)]};
+gain_lp_hp = {[30*ones(length(lp_hp))]};
 
 rlc_elements = {};
 gain_rlc = {};
 
-volume = [5];
+volume = [1];
 plotting = true;
-spectogram = [];
+spectogram = [3000];
 
 equalizer_lsim("m-blue-in-green-with-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
-%% Part 4A: Creative Portion
+%% Part 4A: Creative Portion -- Mr Postman
+
+% Youtube Link Here: https://youtu.be/fXgw948RwYs
 
 lp = {};
 gain_lp = {};
@@ -158,53 +160,14 @@ gain_lp = {};
 hp = {};
 gain_hp = {};
 
-lp_hp = {ones(3)};
-gain_lp_hp = {};
+lp_hp = {[0.20.*ones(20)]};
+gain_lp_hp = {[1000000.*ones(length(lp_hp))]};
 
 rlc_elements = {};
 gain_rlc = {};
 
 volume = [1];
 plotting = true;
-spectogram = [3200];
+spectogram = [4000];
 
 equalizer_lsim("m-mr-postman.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
-
-%%
-
-[a,b] = audioread("m-mr-postman.wav");
-
-sound(a,b)
-
-spectrogram(a(:,1),3000)
-
-% for index = 15:25
-%     figure;
-%     spectrogram(a,(index*100))
-%     title("Spectrograph " + (index*100))
-% end
-
-%%
-a = tf(5, [1 5]);
-
-b = 8*a;
-c = a^8;
-
-figure;
-hold on;
-bode(a);
-bode(b);
-bode(c);
-hold off;
-
-
-%%
-
-s = {{[1 2 ], [1]}, 1, [1 2 5 5]};
-
-disp(length(s{1}))
-
-%%
-
-
-
