@@ -16,7 +16,7 @@ close all;
 
 % The numbers in the brackets refer to the cutoff frequency of the filter. 
 % In our example, we have implemented a high pass filter with a cutoff 
-% frequency of 800 hertz with a gain of 5.
+% frequency of 800 hertz with a gain of 50.
 
 % The volume parameter adds an additional gain to all of the filters
 % in case the combination of the filters brings the volume of the speaker
@@ -50,7 +50,7 @@ equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,r
 % with a cutoff frequency of 500 hertz and a gain of 2.
 
 lp = {[ones(10)]};
-gain_lp = {[ones(length(lp))]};
+gain_lp = {[0.1.*ones(length(lp))]};
  
 hp = {};
 gain_hp = {};
@@ -78,8 +78,8 @@ gain_lp = {};
 hp = {};
 gain_hp = {};
 
-lp_hp = {[ones(20)]};
-gain_lp_hp = {(5*10^6)*[ones(length(lp_hp{1}))]};
+lp_hp = {[0.1.*ones(20)]};
+gain_lp_hp = {(5*10^5)*[ones(length(lp_hp{1}))]};
 
 rlc_elements = {};
 gain_rlc = {};
@@ -90,11 +90,11 @@ spectogram = [3000];
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
-%% Part 2A: Processing Giant Steps By John Coltrane
+%% Part 2A: Processing Giant Steps By John Coltrane -- Reducing Extra Noise
 
 lp = {[ones(10)] [2.*ones(10)]};
 gain_lp = {[ones(length(lp{1}))] [ones(length(lp{2}))]};
- 
+
 hp = {};
 gain_hp = {};
 
@@ -110,7 +110,7 @@ spectogram = [1500];
 
 equalizer_lsim("m-giant-steps-bass-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
-%% Part 2B: Processing Space Station by Art Farmer
+%% Part 2B: Processing Space Station by Art Farmer -- Emphasize the Piano
 
 lp = {[ones(10)] [2.*ones(10)]};
 gain_lp = {[ones(length(lp{1}))] [ones(length(lp{2}))]};
@@ -132,14 +132,14 @@ equalizer_lsim("m-space-station-treble-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain
 
 %% Part 3A: Processing Blue in Green by Miles Davis
 
-lp = {[0.002.*ones(1)] [0.00015.*ones(1)]};
-gain_lp = {[10.*ones(length(lp{1}))] [100.*ones(length(lp{2}))]};
+lp = {[0.002.*ones(1)] [0.001.*ones(1)] [0.0001.*ones(1)]};
+gain_lp = {[50.*ones(length(lp{1}))] [10.*ones(length(lp{2}))] [200.*ones(length(lp{3}))]};
  
 hp = {};
 gain_hp = {};
 
-lp_hp = {[0.05.*ones(5)]};
-gain_lp_hp = {[30*ones(length(lp_hp))]};
+lp_hp = {[0.05.*ones(5)] [0.025.*ones(5)]};
+gain_lp_hp = {[30*ones(length(lp_hp))] [30.*ones(5)]};
 
 rlc_elements = {};
 gain_rlc = {};
@@ -150,21 +150,31 @@ spectogram = [3000];
 
 equalizer_lsim("m-blue-in-green-with-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
-%% Part 4A: Creative Portion -- Mr Postman
+%% Part 4A: Creative Portion -- Mr Postman -- Getting Rid of Claps and Amplifying the Alto
 
 % Youtube Link Here: https://youtu.be/fXgw948RwYs
 
-lp = {};
-gain_lp = {};
- 
+% Original Strategy
+% lp = {[(1/829).*ones(1)] [(1/1140).*ones(1)]};
+% gain_lp = {[ones(length(lp{1}))] [ones(length(lp{2}))]};
+%  
+% hp = {[(1/1657).*ones(1)] [(1/2390).*ones(1)]};
+% gain_hp = {[ones(length(hp{1}))] [ones(length(hp{2}))]};
+% 
+% lp_hp = {[(1/1465).*ones(1)]};
+% gain_lp_hp = {[20.*ones(length(lp_hp{1}))]};
+
+lp = {1500 500};
+gain_lp = {10 10};
+
 hp = {};
 gain_hp = {};
 
-lp_hp = {[0.20.*ones(20)]};
-gain_lp_hp = {[1000000.*ones(length(lp_hp))]};
+lp_hp = {[0.1.*ones(2)] [0.15.*ones(2)] [0.20.*ones(2)]};
+gain_lp_hp = {[50*ones(2)] [ones(2)] [50*ones(2)]};
 
-rlc_elements = {};
-gain_rlc = {};
+rlc_elements = {{[1 5 1],[2]}};
+gain_rlc = {[0.001]};
 
 volume = [1];
 plotting = true;
