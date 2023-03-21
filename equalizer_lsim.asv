@@ -52,13 +52,9 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
     if (~isempty(lp_hp))
         for column = 1:size(final_music,2)
             for index = 1:length(lp_hp)
-                if length(lp_hp{index}) > 1 
-                    transfer_function_list = [transfer_function_list (tf(lp_hp{index}(1,1), [1 lp_hp{index}(1,1)])*tf([1 0], [1 lp_hp{index}(1,1)]))^length(lp_hp{index})];           
-                else
-                    transfer_function_list = [transfer_function_list tf(lp_hp{index}(1,1), [1 lp_hp{index}(1,1)])*tf([1 0], [1 lp_hp{index}(1,1)])];
-                end
-                final_impulse_response_individual(index,:) = gain_lp_hp{index}(1,1).*lsim(transfer_function_list(end),original_music(:,column),time_vector); 
-                final_music(:,column) = gain_lp_hp{index}(1,1).*lsim(transfer_function_list(end),final_music(:,column),time_vector);
+                transfer_function_list = [transfer_function_list (tf(lp_hp(1,index), [1 lp_hp(1,index)])*tf([1 0],[1 lp_hp(1,index)]))];
+                final_impulse_response_individual(length(lp)+length(hp)+index,:) = gain_lp_hp(1,index).*lsim(transfer_function_list(end),original_music(:,column),time_vector);
+                final_music(:,column) = gain_lp_hp(1,index).*lsim(transfer_function_list(end),final_music(:,column),time_vector);
             end
         end
     end

@@ -9,16 +9,15 @@
 % music_title -- string -- name of the song
 
 function create_fft_plot(data,fs,music_title)
-    
-    figure;
-    
     % The following sets up the parameters for plotting as seen in the
     % documentation for the fft function
     title_of_fft = "Single-Sided Amplitude Spectrum of " + music_title;
+
+    data = fft(data);
     L = length(data);
     P2 = abs(data/L);
     P1 = P2(1:L/2+1);
-    P1(2:(length(P1)-1)) = 2*P1(2:(length(P1)-1));
+    P1(2:end-1) = 2*P1(2:end-1);
     f = fs*(0:(L/2))/L;
     
     % The following code plots the fft
