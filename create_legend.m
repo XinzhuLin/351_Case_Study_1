@@ -26,14 +26,12 @@ function labels = create_legend(lp,hp,lp_hp,rlc,include_first)
         end
         if (~isempty(lp_hp))
            for index_label = 1:length(lp_hp)
-               disp(length(lp_hp))
-               disp(index_label);
                name = "HLPHP" + index_label;
                legend_labels = [legend_labels name];
            end
         end
         if (~isempty(rlc))
-            for index_label = 1:length(rlc)/3
+            for index_label = 1:length(rlc)
                 name = "HRLC" + index_label;
                 legend_labels = [legend_labels name];
             end

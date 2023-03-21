@@ -27,9 +27,9 @@ close all;
 
 lp = {};
 gain_lp = {};
- 
+
 hp = {800};
-gain_hp = {5};
+gain_hp = {50};
 
 lp_hp = {};
 gain_lp_hp = {};
@@ -37,7 +37,7 @@ gain_lp_hp = {};
 rlc_elements = {};
 gain_rlc = {};
 
-volume = [100];
+volume = [1];
 plotting = false;
 spectogram = [];
 
@@ -49,8 +49,8 @@ equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,r
 % code. In the following example, we have implemented a low pass filter
 % with a cutoff frequency of 500 hertz and a gain of 2.
 
-lp = {[500*ones(1)]};
-gain_lp = {[2*length(lp{1})]};
+lp = {[ones(10)]};
+gain_lp = {[ones(length(lp))]};
  
 hp = {};
 gain_hp = {};
@@ -63,7 +63,7 @@ gain_rlc = {};
 
 volume = [1];
 plotting = false;
-spectogram = [];
+spectogram = [2000];
 
 equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
@@ -78,51 +78,51 @@ gain_lp = {};
 hp = {};
 gain_hp = {};
 
-lp_hp = {[783]};
-gain_lp_hp = {[10]};
-
-rlc_elements = {};
-gain_rlc = {};
-
-volume = [100];
-plotting = true;
-spectogram = [];
-
-equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
-
-%% Part 2A: Processing Giant Steps By John Coltrane
-
-lp = ones(10);
-gain_lp = ones(length(lp));
- 
-hp = {};
-gain_hp = {};
-
-lp_hp = {};
-gain_lp_hp = {};
+lp_hp = {[ones(20)]};
+gain_lp_hp = {(5*10^6)*[ones(length(lp_hp{1}))]};
 
 rlc_elements = {};
 gain_rlc = {};
 
 volume = [1];
+plotting = false;
+spectogram = [3000];
+
+equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
+
+%% Part 2A: Processing Giant Steps By John Coltrane
+
+lp = {[ones(10)] [2.*ones(10)]};
+gain_lp = {[ones(length(lp{1}))] [ones(length(lp{2}))]};
+ 
+hp = {};
+gain_hp = {};
+
+lp_hp = {[1000.*ones(length(2))]};
+gain_lp_hp = {[10000.*ones(length(lp_hp{1}))]};
+
+rlc_elements = {[1 1 1] [10 10 10]};
+gain_rlc = {[2] [1]};
+
+volume = [1];
 plotting = true;
-spectogram = [];
+spectogram = [1500];
 
 equalizer_lsim("m-giant-steps-bass-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
 
 %% Part 2B: Processing Space Station by Art Farmer
 
-lp = {};
-gain_lp = {};
+lp = {[ones(10)] [2.*ones(10)]};
+gain_lp = {[ones(length(lp{1}))] [ones(length(lp{2}))]};
  
-hp = {[700.*ones(2)]};
-gain_hp = {[1000000.*ones(length(hp))]};
+hp = {[ones(5)]};
+gain_hp = {[ones(length(hp))]};
 
-lp_hp = 800.*ones(2);
-gain_lp_hp = 1000000.*ones(length(lp_hp));
+lp_hp = {[0.05.*ones(5)]};
+gain_lp_hp = {[(5*10^3)*ones(length(lp_hp))]};
 
-rlc_elements = {};
-gain_rlc = {};
+rlc_elements = {{[1 1 1],[3]} [1 1 1]};
+gain_rlc = {[1] [2]};
 
 volume = [30];
 plotting = true;
@@ -152,13 +152,13 @@ equalizer_lsim("m-blue-in-green-with-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain
 
 %% Part 4A: Creative Portion
 
-lp = {[1600.*ones(20)]};
-gain_lp = {[ones(length(lp))]};
+lp = {};
+gain_lp = {};
  
 hp = {};
 gain_hp = {};
 
-lp_hp = {};
+lp_hp = {ones(3)};
 gain_lp_hp = {};
 
 rlc_elements = {};
@@ -200,16 +200,11 @@ hold off;
 
 %%
 
-s = {[1 2 ], 1, [1 2 5 5]};
+s = {{[1 2 ], [1]}, 1, [1 2 5 5]};
 
-
+disp(length(s{1}))
 
 %%
-if 3 < 5
-    disp("hi");
-else
-    disp("bye")
-end
 
 
 
