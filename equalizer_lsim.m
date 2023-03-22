@@ -120,12 +120,12 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         title("Spectogram of Final " + music)
         
         % Bode Plot by Band
-        figure;
-        cumulative_response = 0;
-        hold on;
-        for index = 1:sum_of_impulse_responses
-            cumulative_response = cumulative_response+transfer_function_list(index);
-        end
+          figure;
+          cumulative_response = 0;
+          hold on;
+          for index = 1:sum_of_impulse_responses
+              cumulative_response = cumulative_response+transfer_function_list(index);
+          end
         bode(cumulative_response);
         for index = 0:(sum_of_impulse_responses-1)
             bode(transfer_function_list(2*index+1),time_vector);
@@ -137,12 +137,14 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         % Impulse Response
         figure;
         hold on;
+        plot(lsim(cumulative_response,ones(1,length(time_vector)),time_vector));
         for index = 1:sum_of_impulse_responses
             plot(final_impulse_response_individual(index,:));
         end
         hold off;
         legend(legend_labels);
-        title("Impulse Responses by Band");
+        title("Impulse Responses by Band for " + music );
+        ylim([0 15]);
        
     end
 end
