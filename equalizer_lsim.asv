@@ -63,7 +63,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
                     transfer_function_list = [transfer_function_list tf(lp_hp{index}(1,1), [1 lp_hp{index}(1,1)])*tf([1 0], [1 lp_hp{index}(1,1)])];
                     disp("successful: 1 Transfer Function Added from LP_HP " + length(transfer_function_list));
                 end
-                final_impulse_response_individual(length(lp)+length(hp)+index,:) = gain_lp_hp{index}(1,1).*lsim(transfer_function_list(end),ones(1,length(time_vector)),time_vector); 
+                final_impulse_response_individual(length(lp)+length(hp)+index,:) = gain_lp_hp{index}(1,1).*lsim(transfer_function_list(end),original_music(:,column),time_vector); 
                 final_music(:,column) = gain_lp_hp{index}(1,1).*lsim(transfer_function_list(end),final_music(:,column),time_vector);
             end
         end
@@ -87,7 +87,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
                     transfer_function_list = [transfer_function_list tf(1/(l*c),[1,r/l,1/(l*c)])];
                     disp("successful: 1 Transfer Function Added from RLC " + length(transfer_function_list));
                 end
-                final_impulse_response_individual(length(lp)+length(hp)+length(lp_hp)+index,:) = gain_rlc{index}.*lsim(transfer_function_list(end),ones(1,length(time_vector)),time_vector);
+                final_impulse_response_individual(length(lp)+length(hp)+length(lp_hp)+index,:) = gain_rlc{index}.*lsim(transfer_function_list(end),original_music(:,column),time_vector);
                 final_music(:,column) = gain_rlc{index}.*lsim(transfer_function_list(end),final_music(:,column),time_vector);
             end
         end
@@ -136,14 +136,10 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
 
         % Impulse Response
         figure;
-        hold on;
-        for index = 1:sum_of_impulse_responses
-            plot(final_impulse_response_individual(index,:));
+        for index = 0:sum_of_impulse_responses-1
+            plot(lsim(transfer_function_list(2*index+1));
         end
-        hold off;
-        legend(legend_labels);
-        title("Impulse Responses by Band");
-       
+
     end
 end
 
