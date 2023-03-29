@@ -1,9 +1,9 @@
 %% Case Study 1
-% Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
+% Authors: Lauren Lynch
 % Class: Signals and Systems
 % Date: 3/17/2023
 
-function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram)
+function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram,impulse)
     close all;
 
     % Part 1: Importing the Sound
@@ -95,7 +95,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
     disp("successful: RLC Filters")
 
     % Part 4: Play the Sound   
-    sound(final_music, fs_music);
+    %sound(final_music, fs_music);
     disp("successful: Played Sound")
 
     % Part 5: Plotting
@@ -120,12 +120,12 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         title("Spectogram of Final " + music)
         
         % Bode Plot by Band
-          figure;
-          cumulative_response = 0;
-          hold on;
-          for index = 1:sum_of_impulse_responses
-              cumulative_response = cumulative_response+transfer_function_list(index);
-          end
+        figure;
+        cumulative_response = 0;
+        hold on;
+        for index = 1:sum_of_impulse_responses
+            cumulative_response = cumulative_response+transfer_function_list(index);
+        end
         bode(cumulative_response);
         for index = 0:(sum_of_impulse_responses-1)
             bode(transfer_function_list(2*index+1),time_vector);
@@ -137,15 +137,14 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
         % Impulse Response
         figure;
         hold on;
-        plot(lsim(cumulative_response,ones(1,length(time_vector)),time_vector));
+        plot(time_vector,lsim(cumulative_response, [1, zeros(1,length(time_vector)-1)]',time_vector));
         for index = 1:sum_of_impulse_responses
-            plot(final_impulse_response_individual(index,:));
+            plot(time_vector,lsim(transfer_function_list(1,index), [1, zeros(1,length(time_vector)-1)]',time_vector));
         end
         hold off;
         legend(legend_labels);
-        title("Impulse Responses by Band for " + music );
-        ylim([0 15]);
-       
+        title("Impulse Responses by Band for " + music);
+        xlim([0 impulse]);      
     end
 end
 

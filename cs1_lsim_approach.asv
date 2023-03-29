@@ -95,7 +95,7 @@ equalizer_lsim("m-violin-and-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,r
 
 %% Part 2A: Processing Giant Steps By John Coltrane -- Reducing Extra Noise
 
-lp = {[ones(10)] [2.*ones(10)]};
+lp = {[ones(10)] [2.*ones(10)] [2.*ones(10)]};
 gain_lp = {[ones(length(lp{1}))] [ones(length(lp{2}))]};
 
 hp = {};
@@ -131,7 +131,7 @@ gain_rlc = {[1] [2]};
 volume = [30];
 plotting = true;
 spectogram = [2000];
-impulse = [30];
+impulse = [10];
 
 equalizer_lsim("m-space-station-treble-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram,impulse)
 
@@ -152,7 +152,7 @@ gain_rlc = {};
 volume = [10];
 plotting = true;
 spectogram = [3000];
-impulse = [30];
+impulse = [10];
 
 equalizer_lsim("m-blue-in-green-with-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram,impulse)
 
@@ -177,6 +177,13 @@ plotting = true;
 spectogram = [4000];
 impulse = [10];
 
+
 equalizer_lsim("m-mr-postman.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram,impulse)
+
+
+%%
+
+figure
+plot(0:14,abs(fft([1 0 1 0 1 0 0 0 0 0 0 0 0 0 0])));
 
 

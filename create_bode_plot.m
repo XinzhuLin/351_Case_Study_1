@@ -1,5 +1,5 @@
 %% Case Study 1
-% Authors: Lauren Lynch, Xinzhu Lin, and Chinh Mach
+% Authors: Lauren Lynch
 % Class: Signals and Systems
 % Date: 3/17/2023
 
@@ -30,7 +30,6 @@ function create_bode_plot(final_impulse_response_individual,final_impulse_respon
         loglog(range_of_omega,angle(final_impulse_response));
         for index = 1:sum_of_impulse_responses
             loglog(range_of_omega,angle(final_impulse_response_individual(index,:)));
-            disp(index);
         end
         disp(legend_labels);
         title("User Defined Impulse Response Phase")
