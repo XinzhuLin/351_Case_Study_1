@@ -95,7 +95,7 @@ function equalizer_lsim(music,lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_element
     disp("successful: RLC Filters")
 
     % Part 4: Play the Sound   
-    %sound(final_music, fs_music);
+    sound(final_music, fs_music);
     disp("successful: Played Sound")
 
     % Part 5: Plotting

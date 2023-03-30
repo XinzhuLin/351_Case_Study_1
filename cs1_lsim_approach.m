@@ -138,21 +138,21 @@ equalizer_lsim("m-space-station-treble-cut.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain
 %% Part 3A: Processing Blue in Green by Miles Davis
 
 lp = {[0.002.*ones(1)] [0.001.*ones(1)] [0.0001.*ones(1)]};
-gain_lp = {[50.*ones(length(lp{1}))] [50.*ones(length(lp{2}))] [20.*ones(length(lp{3}))]};
+gain_lp = {[50.*ones(length(lp{1}))] [20.*ones(length(lp{2}))] [30.*ones(length(lp{3}))]};
  
 hp = {};
 gain_hp = {};
 
 lp_hp = {[0.05.*ones(5)] [0.025.*ones(5)]};
-gain_lp_hp = {[200*ones(length(lp_hp))] [200.*ones(5)]};
+gain_lp_hp = {[160*ones(length(lp_hp))] [160.*ones(5)]};
 
 rlc_elements = {};
 gain_rlc = {};
 
-volume = [10];
+volume = [5];
 plotting = true;
 spectogram = [3000];
-impulse = [30];
+impulse = [3000];
 
 equalizer_lsim("m-blue-in-green-with-siren.wav",lp,gain_lp,hp,gain_hp,lp_hp,gain_lp_hp,rlc_elements,gain_rlc,volume,plotting,spectogram,impulse)
 
